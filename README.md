@@ -1,7 +1,7 @@
 # ProjetSynchroComAvance
 
-Le projet se constitue d'un rond point avec 4 directions (Nord, Est, Sud ,Ouest)
-On a des voitures qui apparaissent à intervalle aléatoire avec une direction d'arrivé et une de départ
+Le projet se constitue d'un rond point avec 4 directions (Nord, Est, Sud ,Ouest).
+On a des voitures qui apparaissent à intervalle aléatoire avec une direction d'arrivé et une de départ.
 Le rond point il a 4 emplacements (pour les voitures) (nord est ouest sud).
 
 Règle de déplacement des voitures :
