@@ -3,17 +3,16 @@
 #include <sys/msg.h>
 #include <sys/stat.h>
 
-pid_t parentPid;
-pid_t childPid;
-
 int main(){
-	pid_t currentPid = fork();
-	if(currentPid == 0){
-		parentPid = getpid();
-		printf("Le fils :%d\n");
-	}
-	else{
-		printf("Le pere :%d\n");
+	while(1){
+		pid_t currentPid = fork();
+		if(currentPid == 0){
+			pid_t processus = getpid();
+			return CreateVoiture();
+		}
+		else{
+			sleep(1);
+		}
 	}
 	return 0;
 }
