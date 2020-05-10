@@ -6,16 +6,29 @@
 #include <sys/msg.h>
 #include <sys/stat.h>
 
-int voitures[4] = {0,1,2,3};
+enum direction {Nord = 0, Ouest = 1,Sud = 2, Est = 3};
+
+struct voiture{
+  pid_t PID;
+  direction depart;
+  direction arrive;
+}
+
+int voitures[4] = {0,1,2,3}; //tableau de voiture
 
 int main()
 {
-  //Insérer ici la logique du programme
+  wile(1){
+    int test = DeplaceVoiture();
+    sleep(1);
+  }
   return 0;
 }
 
 int DeplaceVoiture(){
-  //Insérer ici la logique pour déplacer les voitures
+  avanceVoiture();
+  //test si les voitures sont arrivées sur leur case d'arrivée
+  //Regarder les cases vides du rond point et inséerer si possible les voitures
   return 0;
 }
 
