@@ -1,4 +1,4 @@
-#include "direction.c"
+#include "Direction.c"
 
 struct voiture{
   pid_t PID;
