@@ -13,7 +13,7 @@ int main(){
 		printf("Le fils :%d\n");
 	}
 	else{
-		printf("Le pere :%d\n",i*2);
+		printf("Le pere :%d\n");
 	}
 	return 0;
 }
