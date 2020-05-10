@@ -5,14 +5,7 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <sys/stat.h>
-
-enum direction {Nord = 0, Ouest = 1,Sud = 2, Est = 3};
-
-struct voiture{
-  pid_t PID;
-  enum direction depart;
-  enum direction arrive;
-};
+#include "Voiture.c"
 
 int voitures[4] = {0,1,2,3}; //tableau de voiture
 
