@@ -4,13 +4,7 @@
 #include <sys/stat.h>
 #include <time.h>       /* time */
 #include <stdlib.h>     /* srand, rand, malloc */
-
-enum direction {Nord = 0, Ouest = 1,Sud = 2, Est = 3};
-struct voiture{
-  pid_t PID;
-  enum direction depart;
-  enum direction arrive;
-};
+#include "Voiture.c"
 
 struct voiture* CreateVoiture(){
 	struct voiture *v = malloc(sizeof(struct voiture));
