@@ -10,7 +10,6 @@
 
 struct rondPoint{
 	struct voiture* surRondPoint[4];
-	struct voiture* enAttente[4];
 };
 
 int DeplaceVoiture(struct rondPoint* croisement){
@@ -36,9 +35,24 @@ void insertionVoiture(struct rondPoint* croisement,int indice,int voiture){
   croisement->surRondPoint[indice] = voiture;
 }
 
+void creationFileMessage(key_t cle,int msgid){
+  if((msgid = msgget(cle, IPC_CREAT | S_IRUSR | S_IWUSR )) == -1){
+        fprintf(stderr, "Creation de la file de message %d impossible",cle);
+        exit(1);
+  }
+}
+
 int main()
 {
- struct rondPoint* croisement = malloc(sizeof(struct rondPoint));
+  struct rondPoint* croisement = malloc(sizeof(struct rondPoint));
+  //On construit 4 files de messages pour contenir les informations des voitures en fonction de leur direction d'arrivee
+  key_t cleNord = 50, cleOuest = 51, cleSud = 52, cleEst = 53;
+  int msgIDNord, msgIDOuest, msgIDSud, msgIDEst;
+  creationFileMessage(cleNord,msgIDNord);
+  creationFileMessage(cleOuest,msgIDOuest);
+  creationFileMessage(cleSud,msgIDSud);
+  creationFileMessage(cleEst,msgIDEst);
+  //Boucle principale
   while(1){
     int test = DeplaceVoiture(croisement);
     sleep(1);
