@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
 #include <string.h>
@@ -7,36 +8,40 @@
 #include <sys/stat.h>
 #include "Voiture.h"
 
-int voitures[4] = {0,1,2,3}; //tableau de voiture
+struct rondPoint{
+	struct voiture* surRondPoint[4];
+	struct voiture* enAttente[4];
+};
 
-int main()
-{
-  while(1){
-    int test = DeplaceVoiture();
-    sleep(1);
-  }
-  return 0;
-}
-
-int DeplaceVoiture(){
-  avanceVoiture();
+int DeplaceVoiture(struct rondPoint* croisement){
+  avanceVoiture(croisement);
   //test si les voitures sont arrivées sur leur case d'arrivée
   //Regarder les cases vides du rond point et inséerer si possible les voitures
   return 0;
 }
 
-void avanceVoiture(){
-  int voitureN = voitures[0];
-  voitures[0] = voitures[1];
-  voitures[1] = voitures[2];
-  voitures[2] = voitures[3];
-  voitures[3] = voitureN;
+void avanceVoiture(struct rondPoint* croisement){
+  struct voiture* voitureN = croisement->surRondPoint[0];
+  croisement->surRondPoint[0] = croisement->surRondPoint[1];
+  croisement->surRondPoint[1] = croisement->surRondPoint[2];
+  croisement->surRondPoint[2] = croisement->surRondPoint[3];
+  croisement->surRondPoint[3] = voitureN;
 }
 
-void suppressionVoiture(int indice){
-  voitures[indice] = NULL;
+void suppressionVoiture(struct rondPoint* croisement,int indice){
+  croisement->surRondPoint[indice] = NULL;
 }
 
-void insertionVoiture(int indice,int voiture){
-  voitures[indice] = voiture;
+void insertionVoiture(struct rondPoint* croisement,int indice,int voiture){
+  croisement->surRondPoint[indice] = voiture;
+}
+
+int main()
+{
+ struct rondPoint* croisement = malloc(sizeof(struct rondPoint));
+  while(1){
+    int test = DeplaceVoiture(croisement);
+    sleep(1);
+  }
+  return 0;
 }
