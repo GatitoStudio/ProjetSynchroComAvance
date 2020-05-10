@@ -3,7 +3,7 @@
 #include <sys/msg.h>
 #include <sys/stat.h>
 #include <time.h>       /* time */
-#include <stdlib.h>     /* srand, rand */
+#include <stdlib.h>     /* srand, rand, malloc */
 
 enum direction {Nord = 0, Ouest = 1,Sud = 2, Est = 3};
 struct voiture{
@@ -18,7 +18,8 @@ int main(){
 		pid_t currentPid = fork();
 		if(currentPid == 0){
 			pid_t processus = getpid();
-			return CreateVoiture();
+			struct voiture* voit = CreateVoiture();
+			return 0;
 		}
 		else{
 			sleep(1);
@@ -27,11 +28,10 @@ int main(){
 	return 0;
 }
 
-voiture CreateVoiture(){
-	voiture  v = new voiture();
-	v.PID=  getpid();
-	v.depart = rand()%4;
-	v.arrive = rand()%4;
-	//Créer ici une voiture avec une direction de départ et d'arrivée 
-	return v; //Renvoyer ladite voiture
+struct voiture* CreateVoiture(){
+	struct voiture *v = malloc(sizeof(struct voiture));
+	v->PID = getpid();
+	v->depart = rand()%4;
+	v->arrive = rand()%4;
+	return v;
 }
