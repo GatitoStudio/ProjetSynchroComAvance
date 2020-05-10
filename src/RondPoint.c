@@ -10,8 +10,8 @@ enum direction {Nord = 0, Ouest = 1,Sud = 2, Est = 3};
 
 struct voiture{
   pid_t PID;
-  struct direction depart;
-  struct direction arrive;
+  enum direction depart;
+  enum direction arrive;
 }
 
 int voitures[4] = {0,1,2,3}; //tableau de voiture
