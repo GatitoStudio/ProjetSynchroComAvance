@@ -269,7 +269,8 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = subdir-objects
-GenerateurVoiture_SOURCES = src/GenerateurVoiture.c 
+AM_CPPFLAGS = -I$(srcdir)/src
+GenerateurVoiture_SOURCES = src/GenerateurVoiture.c src/Voiture.h src/Direction.h
 RondPoint_SOURCES = src/RondPoint.c 
 all: all-am
 
