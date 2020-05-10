@@ -2,7 +2,10 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <sys/stat.h>
+#include <time.h>       /* time */
+#include <stdlib.h>     /* srand, rand */
 
+enum direction {Nord = 0, Ouest = 1,Sud = 2, Est = 3};
 struct voiture{
   pid_t PID;
   enum direction depart;
@@ -10,6 +13,7 @@ struct voiture{
 };
 
 int main(){
+	srand (time(0));
 	while(1){
 		pid_t currentPid = fork();
 		if(currentPid == 0){
@@ -26,8 +30,8 @@ int main(){
 voiture CreateVoiture(){
 	voiture  v = new voiture();
 	v.PID=  getpid();
-	v.depart = ;
-	v.arrive = ;
+	v.depart = rand()%4;
+	v.arrive = rand()%4;
 	//Créer ici une voiture avec une direction de départ et d'arrivée 
 	return v; //Renvoyer ladite voiture
 }
