@@ -1,3 +1,4 @@
 
-bin_PROGRAMS = tut_prog			
-tut_prog_SOURCES = main.c
+bin_PROGRAMS = GenerateurVoiture RondPoint
+GenerateurVoiture_SOURCES = GenerateurVoiture.c 
+RondPoint_SOURCES = GenerateurVoiture.c 

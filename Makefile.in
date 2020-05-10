@@ -86,7 +86,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = tut_prog$(EXEEXT)
+bin_PROGRAMS = GenerateurVoiture$(EXEEXT) RondPoint$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -101,9 +101,12 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_tut_prog_OBJECTS = main.$(OBJEXT)
-tut_prog_OBJECTS = $(am_tut_prog_OBJECTS)
-tut_prog_LDADD = $(LDADD)
+am_GenerateurVoiture_OBJECTS = GenerateurVoiture.$(OBJEXT)
+GenerateurVoiture_OBJECTS = $(am_GenerateurVoiture_OBJECTS)
+GenerateurVoiture_LDADD = $(LDADD)
+am_RondPoint_OBJECTS = GenerateurVoiture.$(OBJEXT)
+RondPoint_OBJECTS = $(am_RondPoint_OBJECTS)
+RondPoint_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -132,8 +135,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(tut_prog_SOURCES)
-DIST_SOURCES = $(tut_prog_SOURCES)
+SOURCES = $(GenerateurVoiture_SOURCES) $(RondPoint_SOURCES)
+DIST_SOURCES = $(GenerateurVoiture_SOURCES) $(RondPoint_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -160,8 +163,8 @@ ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
 AM_RECURSIVE_TARGETS = cscope
-am__DIST_COMMON = $(srcdir)/Makefile.in compile depcomp install-sh \
-	missing
+am__DIST_COMMON = $(srcdir)/Makefile.in COPYING INSTALL compile \
+	depcomp install-sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -264,7 +267,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-tut_prog_SOURCES = main.c
+GenerateurVoiture_SOURCES = GenerateurVoiture.c 
+RondPoint_SOURCES = GenerateurVoiture.c 
 all: all-am
 
 .SUFFIXES:
@@ -345,9 +349,13 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-tut_prog$(EXEEXT): $(tut_prog_OBJECTS) $(tut_prog_DEPENDENCIES) $(EXTRA_tut_prog_DEPENDENCIES) 
-	@rm -f tut_prog$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(tut_prog_OBJECTS) $(tut_prog_LDADD) $(LIBS)
+GenerateurVoiture$(EXEEXT): $(GenerateurVoiture_OBJECTS) $(GenerateurVoiture_DEPENDENCIES) $(EXTRA_GenerateurVoiture_DEPENDENCIES) 
+	@rm -f GenerateurVoiture$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(GenerateurVoiture_OBJECTS) $(GenerateurVoiture_LDADD) $(LIBS)
+
+RondPoint$(EXEEXT): $(RondPoint_OBJECTS) $(RondPoint_DEPENDENCIES) $(EXTRA_RondPoint_DEPENDENCIES) 
+	@rm -f RondPoint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(RondPoint_OBJECTS) $(RondPoint_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -355,7 +363,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/GenerateurVoiture.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
