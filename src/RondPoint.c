@@ -5,7 +5,7 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <sys/stat.h>
-#include "Voiture.c"
+#include "Voiture.h"
 
 int voitures[4] = {0,1,2,3}; //tableau de voiture
 
