@@ -18,3 +18,7 @@ int main(){
 	return 0;
 }
 
+int CreateVoiture(){
+	//Créer ici une voiture avec une direction de départ et d'arrivée 
+	return 0; //Renvoyer ladite voiture
+}
