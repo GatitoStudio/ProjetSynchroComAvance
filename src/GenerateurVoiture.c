@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <time.h>       /* time */
 #include <stdlib.h>     /* srand, rand, malloc */
-#include "Voiture.c"
+#include "Voiture.h"
 
 struct voiture* CreateVoiture(){
 	struct voiture *v = malloc(sizeof(struct voiture));
