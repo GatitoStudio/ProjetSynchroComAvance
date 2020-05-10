@@ -12,6 +12,14 @@ struct voiture{
   enum direction arrive;
 };
 
+struct voiture* CreateVoiture(){
+	struct voiture *v = malloc(sizeof(struct voiture));
+	v->PID = getpid();
+	v->depart = rand()%4;
+	v->arrive = rand()%4;
+	return v;
+}
+
 int main(){
 	srand (time(0));
 	while(1){
@@ -26,12 +34,4 @@ int main(){
 		}
 	}
 	return 0;
-}
-
-struct voiture* CreateVoiture(){
-	struct voiture *v = malloc(sizeof(struct voiture));
-	v->PID = getpid();
-	v->depart = rand()%4;
-	v->arrive = rand()%4;
-	return v;
 }
