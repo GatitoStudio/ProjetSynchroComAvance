@@ -12,7 +12,7 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-MAKE=make
+
 
 
 am__is_gnu_make = { \
@@ -101,22 +101,23 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_GenerateurVoiture_OBJECTS = GenerateurVoiture.$(OBJEXT)
+am__dirstamp = $(am__leading_dot)dirstamp
+am_GenerateurVoiture_OBJECTS = src/GenerateurVoiture.$(OBJEXT)
 GenerateurVoiture_OBJECTS = $(am_GenerateurVoiture_OBJECTS)
 GenerateurVoiture_LDADD = $(LDADD)
-am_RondPoint_OBJECTS = GenerateurVoiture.$(OBJEXT)
+am_RondPoint_OBJECTS = src/RondPoint.$(OBJEXT)
 RondPoint_OBJECTS = $(am_RondPoint_OBJECTS)
 RondPoint_LDADD = $(LDADD)
-AM_V_P = $(am__v_P_1)
-am__v_P_ = $(am__v_P_1)
+AM_V_P = $(am__v_P_$(V))
+am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
 am__v_P_1 = :
-AM_V_GEN = $(am__v_GEN_1)
-am__v_GEN_ = $(am__v_GEN_1)
+AM_V_GEN = $(am__v_GEN_$(V))
+am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
 am__v_GEN_0 = @echo "  GEN     " $@;
 am__v_GEN_1 = 
-AM_V_at = $(am__v_at_1)
-am__v_at_ = $(am__v_at_1)
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
 am__v_at_0 = @
 am__v_at_1 = 
 DEFAULT_INCLUDES = -I.
@@ -125,14 +126,14 @@ am__depfiles_maybe = depfiles
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-AM_V_CC = $(am__v_CC_1)
-am__v_CC_ = $(am__v_CC_1)
+AM_V_CC = $(am__v_CC_$(V))
+am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
 am__v_CC_0 = @echo "  CC      " $@;
 am__v_CC_1 = 
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-AM_V_CCLD = $(am__v_CCLD_1)
-am__v_CCLD_ = $(am__v_CCLD_1)
+AM_V_CCLD = $(am__v_CCLD_$(V))
+am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(GenerateurVoiture_SOURCES) $(RondPoint_SOURCES)
@@ -190,7 +191,7 @@ AUTOHEADER = ${SHELL} /home/pierre/SynchroAvancee/ProjetSynchroComAvance/missing
 AUTOMAKE = ${SHELL} /home/pierre/SynchroAvancee/ProjetSynchroComAvance/missing automake-1.15
 AWK = gawk
 CC = gcc
-CCDEPMODE = depmode=none
+CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -220,7 +221,7 @@ PACKAGE_TARNAME = tutorial-program
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
-SET_MAKE = MAKE=make
+SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
 VERSION = 1.0
@@ -229,7 +230,7 @@ abs_srcdir = /home/pierre/SynchroAvancee/ProjetSynchroComAvance
 abs_top_builddir = /home/pierre/SynchroAvancee/ProjetSynchroComAvance
 abs_top_srcdir = /home/pierre/SynchroAvancee/ProjetSynchroComAvance
 ac_ct_CC = gcc
-am__include = #
+am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
@@ -267,8 +268,9 @@ target_alias =
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-GenerateurVoiture_SOURCES = GenerateurVoiture.c 
-RondPoint_SOURCES = GenerateurVoiture.c 
+AUTOMAKE_OPTIONS = subdir-objects
+GenerateurVoiture_SOURCES = src/GenerateurVoiture.c 
+RondPoint_SOURCES = src/RondPoint.c 
 all: all-am
 
 .SUFFIXES:
@@ -348,10 +350,20 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+src/$(am__dirstamp):
+	@$(MKDIR_P) src
+	@: > src/$(am__dirstamp)
+src/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/$(DEPDIR)
+	@: > src/$(DEPDIR)/$(am__dirstamp)
+src/GenerateurVoiture.$(OBJEXT): src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 
 GenerateurVoiture$(EXEEXT): $(GenerateurVoiture_OBJECTS) $(GenerateurVoiture_DEPENDENCIES) $(EXTRA_GenerateurVoiture_DEPENDENCIES) 
 	@rm -f GenerateurVoiture$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(GenerateurVoiture_OBJECTS) $(GenerateurVoiture_LDADD) $(LIBS)
+src/RondPoint.$(OBJEXT): src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 
 RondPoint$(EXEEXT): $(RondPoint_OBJECTS) $(RondPoint_DEPENDENCIES) $(EXTRA_RondPoint_DEPENDENCIES) 
 	@rm -f RondPoint$(EXEEXT)
@@ -359,25 +371,29 @@ RondPoint$(EXEEXT): $(RondPoint_OBJECTS) $(RondPoint_DEPENDENCIES) $(EXTRA_RondP
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f src/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-# ./$(DEPDIR)/GenerateurVoiture.Po
+include src/$(DEPDIR)/GenerateurVoiture.Po
+include src/$(DEPDIR)/RondPoint.Po
 
 .c.o:
-#	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-	$(AM_V_CC)source='$<' object='$@' libtool=no \
-	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
+	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+	$(am__mv) $$depbase.Tpo $$depbase.Po
+#	$(AM_V_CC)source='$<' object='$@' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-#	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-	$(AM_V_CC)source='$<' object='$@' libtool=no \
-	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+	$(am__mv) $$depbase.Tpo $$depbase.Po
+#	$(AM_V_CC)source='$<' object='$@' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -634,6 +650,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f src/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -644,7 +662,7 @@ clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -692,7 +710,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

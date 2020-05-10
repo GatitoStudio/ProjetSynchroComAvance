@@ -581,6 +581,7 @@ PACKAGE_STRING='Tutorial Program 1.0'
 PACKAGE_BUGREPORT=''
 PACKAGE_URL=''
 
+ac_unique_file="src"
 ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
@@ -3438,6 +3439,7 @@ else
   am__fastdepCC_TRUE='#'
   am__fastdepCC_FALSE=
 fi
+
 
 
 ac_config_files="$ac_config_files Makefile"
