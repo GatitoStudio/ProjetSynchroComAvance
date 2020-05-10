@@ -18,7 +18,7 @@ int voitures[4] = {0,1,2,3}; //tableau de voiture
 
 int main()
 {
-  wile(1){
+  while(1){
     int test = DeplaceVoiture();
     sleep(1);
   }
