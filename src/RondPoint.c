@@ -31,7 +31,7 @@ void avanceVoiture(){
 }
 
 void suppressionVoiture(int indice){
-  voitures[indice] = NULL;
+  voitures[indice] = 0;
 }
 
 void insertionVoiture(int indice,int voiture){
