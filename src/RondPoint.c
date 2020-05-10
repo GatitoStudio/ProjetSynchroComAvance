@@ -12,7 +12,7 @@ struct voiture{
   pid_t PID;
   enum direction depart;
   enum direction arrive;
-}
+};
 
 int voitures[4] = {0,1,2,3}; //tableau de voiture
 
