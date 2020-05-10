@@ -12,13 +12,6 @@ struct rondPoint{
 	struct voiture* surRondPoint[4];
 };
 
-int DeplaceVoiture(struct rondPoint* croisement){
-  avanceVoiture(croisement);
-  //test si les voitures sont arrivées sur leur case d'arrivée
-  //Regarder les cases vides du rond point et inséerer si possible les voitures
-  return 0;
-}
-
 void avanceVoiture(struct rondPoint* croisement){
   struct voiture* voitureN = croisement->surRondPoint[0];
   croisement->surRondPoint[0] = croisement->surRondPoint[1];
@@ -33,6 +26,13 @@ void suppressionVoiture(struct rondPoint* croisement,int indice){
 
 void insertionVoiture(struct rondPoint* croisement,int indice,int voiture){
   croisement->surRondPoint[indice] = voiture;
+}
+
+int DeplaceVoiture(struct rondPoint* croisement){
+  avanceVoiture(croisement);
+  //test si les voitures sont arrivées sur leur case d'arrivée
+  //Regarder les cases vides du rond point et inséerer si possible les voitures
+  return 0;
 }
 
 void creationFileMessage(key_t cle,int msgid){

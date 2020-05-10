@@ -102,7 +102,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_GenerateurVoiture_OBJECTS = src/GenerateurVoiture.$(OBJEXT)
+am_GenerateurVoiture_OBJECTS = src/GenerateurVoiture.$(OBJEXT) \
+	src/Voiture.$(OBJEXT)
 GenerateurVoiture_OBJECTS = $(am_GenerateurVoiture_OBJECTS)
 GenerateurVoiture_LDADD = $(LDADD)
 am_RondPoint_OBJECTS = src/RondPoint.$(OBJEXT)
@@ -270,7 +271,7 @@ top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = subdir-objects
 AM_CPPFLAGS = -I$(srcdir)/src
-GenerateurVoiture_SOURCES = src/GenerateurVoiture.c src/Voiture.h src/Direction.h
+GenerateurVoiture_SOURCES = src/GenerateurVoiture.c src/Voiture.c src/Voiture.h src/Direction.h
 RondPoint_SOURCES = src/RondPoint.c 
 all: all-am
 
@@ -359,6 +360,8 @@ src/$(DEPDIR)/$(am__dirstamp):
 	@: > src/$(DEPDIR)/$(am__dirstamp)
 src/GenerateurVoiture.$(OBJEXT): src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
+src/Voiture.$(OBJEXT): src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 
 GenerateurVoiture$(EXEEXT): $(GenerateurVoiture_OBJECTS) $(GenerateurVoiture_DEPENDENCIES) $(EXTRA_GenerateurVoiture_DEPENDENCIES) 
 	@rm -f GenerateurVoiture$(EXEEXT)
@@ -379,6 +382,7 @@ distclean-compile:
 
 include src/$(DEPDIR)/GenerateurVoiture.Po
 include src/$(DEPDIR)/RondPoint.Po
+include src/$(DEPDIR)/Voiture.Po
 
 .c.o:
 	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

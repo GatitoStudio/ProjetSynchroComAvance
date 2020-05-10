@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include "Voiture.h"
+#include <stdlib.h>
 
-char* toJson(struct* voiture voit){
+char* toJSON(struct voiture* voit){
 	char * result = (char*)malloc(72);
 	sprintf(result,"{\"PID\":\"%d\",\"depart\":\"%d\",\"arrive\":\"%d\"}",
 			(int)voit->PID,
