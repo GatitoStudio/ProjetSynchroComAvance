@@ -20,18 +20,15 @@ int DeplaceVoiture(){
 }
 
 void avanceVoiture(){
-  int voitureN = voiture[0];
-  int voitureO = voiture[1];
-  int voitureS = voiture[2];
-  int voitureE = voiture[3];
-  voiture[0] = voitureE;
-  voiture[1] = voitureN;
-  voiture[2] = voitureO;
-  voiture[3] = voitureS;
+  int voitureN = voitures[0];
+  voitures[0] = voitures[1];
+  voitures[1] = voitures[2];
+  voitures[2] = voitures[3];
+  voitures[3] = voitureN;
 }
 
 void suppressionVoiture(int indice){
-  voitures[indice] = 0;
+  voitures[indice] = NULL;
 }
 
 void insertionVoiture(int indice,int voiture){
