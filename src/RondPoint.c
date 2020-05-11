@@ -7,6 +7,7 @@
 #include <sys/msg.h>
 #include <sys/stat.h>
 #include "Voiture.h"
+#include "Direction.h"
 
 struct rondPoint{
 	struct voiture* surRondPoint[4];
@@ -25,16 +26,32 @@ void suppressionVoiture(struct rondPoint* croisement,int indice){
 }
 
 void insertionVoiture(struct rondPoint* croisement,int indice,int voiture){
-  croisement->surRondPoint[indice] = voiture;
+  croisement->surRondPoint[indice]-> = voiture;
 }
 
 int DeplaceVoiture(struct rondPoint* croisement){
   avanceVoiture(croisement);
+  if(IsArrived(croisement,0,direction.Nord){suppressionVoiture(croisement,0);}
+  if(IsArrived(croisement,1,direction.Ouest ){suppressionVoiture(croisement,1);}	
+  if(IsArrived(croisement,2,direction.Sud ){suppressionVoiture(croisement,2);}	
+  if(IsArrived(croisement,3,direction.Est ){suppressionVoiture(croisement,3);}	
+
   //test si les voitures sont arrivées sur leur case d'arrivée
   //Regarder les cases vides du rond point et inséerer si possible les voitures
   return 0;
 }
-
+bool IsArrived(struct rondPoint* croisement,int i, direction dir)
+{
+	if(croisement->surRondPoint[i] != NULL){
+	if(croisement->surRondPoint[i]->arrive  ==  dir){
+		return true;
+	}
+	else{
+		return false;
+	}
+	}
+	return false;
+}
 void creationFileMessage(key_t cle,int msgid){
   if((msgid = msgget(cle, IPC_CREAT | S_IRUSR | S_IWUSR )) == -1){
         fprintf(stderr, "Creation de la file de message %d impossible",cle);
