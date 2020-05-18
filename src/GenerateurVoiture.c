@@ -7,6 +7,8 @@
 #include <stdlib.h>	/* srand, rand, malloc */
 #include "Voiture.h"
 
+void sigHandler();
+
 struct voiture* CreateVoiture(){
 	struct voiture *v = malloc(sizeof(struct voiture));
 	v->PID = getpid();
@@ -44,5 +46,9 @@ int main(){
 			sleep(1);
 		}
 	}
+	return 0;
+}
+void sigHandler()
+{
 	return 0;
 }
