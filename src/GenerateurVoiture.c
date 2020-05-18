@@ -41,7 +41,7 @@ int main(){
 			struct voiture* voit = CreateVoiture();
 			attacheVoitureAuRondPoint(voit);
 			signal(SIGTERM,&sighandler);
-			return 0;
+			pause();
 		}
 		else{
 			sleep(1);
