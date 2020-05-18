@@ -40,8 +40,9 @@ int main(){
 			pid_t processus = getpid();
 			struct voiture* voit = CreateVoiture();
 			attacheVoitureAuRondPoint(voit);
-			signal(SIGTERM,&sighandler);
+			signal(SIGUSR1,&sighandler);
 			pause();
+			return 0;
 		}
 		else{
 			sleep(1);
