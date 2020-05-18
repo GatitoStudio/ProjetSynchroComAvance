@@ -1,3 +1,6 @@
+#ifndef VOITURE__H
+#define VOITURE__H
+
 #include "Direction.h"
 #include <sys/types.h>
 
@@ -14,3 +17,5 @@ struct msgtxt {
 
 struct voiture* fromJSON(char* json);
 char* toJSON(struct voiture* voit);
+
+#endif
