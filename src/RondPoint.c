@@ -41,6 +41,7 @@ int DeplaceVoiture(struct rondPoint* croisement){
   //Regarder les cases vides du rond point et inséerer si possible les voitures
   return 0;
 }
+     
 bool IsArrived(struct rondPoint* croisement,int i, direction dir)
 {
 	if(croisement->surRondPoint[i] != NULL){
