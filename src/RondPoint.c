@@ -61,6 +61,8 @@ void creationFileMessage(key_t cle,int msgid){
   }
 }
 
+     
+     
 int main()
 {
   struct rondPoint* croisement = malloc(sizeof(struct rondPoint));
