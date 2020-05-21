@@ -55,13 +55,16 @@ int main(){
 }
 void entreRondPoint()
 {
+	printf("Entre dans le rond point");
 	return 0;
 }
 void Avance()
 {
+	printf("Avance dans le rond point");
 	return 0;
 }
 void Sort()
 {
+	printf("Sort du rond point");
 	return 0;
 }
