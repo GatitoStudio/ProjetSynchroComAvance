@@ -40,7 +40,10 @@ int main(){
 			pid_t processus = getpid();
 			struct voiture* voit = CreateVoiture();
 			attacheVoitureAuRondPoint(voit);
-			signal(SIGUSR1,&sighandler);
+			signal(SIGUSR1,&entreRondPoint);
+			signal(SIGUSR2,&Avance);
+			signal(SIGUSR3,&Sort);
+
 			pause();
 			return 0;
 		}
@@ -50,7 +53,15 @@ int main(){
 	}
 	return 0;
 }
-void sigHandler()
+void entreRondPoint()
+{
+	return 0;
+}
+void Avance()
+{
+	return 0;
+}
+void Sort()
 {
 	return 0;
 }
