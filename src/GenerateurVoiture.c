@@ -8,7 +8,7 @@
 #include "Voiture.h"
 
 void sigHandler();
-
+struct voiture* voit = CreateVoiture();
 struct voiture* CreateVoiture(){
 	struct voiture *v = malloc(sizeof(struct voiture));
 	v->PID = getpid();
@@ -38,7 +38,7 @@ int main(){
 		pid_t currentPid = fork();
 		if(currentPid == 0){
 			pid_t processus = getpid();
-			struct voiture* voit = CreateVoiture();
+			 voiture* voit = CreateVoiture();
 			attacheVoitureAuRondPoint(voit);
 			signal(SIGUSR1,&entreRondPoint);
 			signal(SIGUSR2,&Avance);
@@ -60,6 +60,7 @@ void entreRondPoint()
 }
 void Avance()
 {
+	
 	printf("Avance dans le rond point");
 	return 0;
 }
