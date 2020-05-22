@@ -1,13 +1,17 @@
 #include <string.h>
 #include <stdio.h>
+#include <signal.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <time.h>	/* time */
 #include <stdlib.h>	/* srand, rand, malloc */
 #include "Voiture.h"
 
-void sigHandler();
+void Avance();
+void EntreRondPoint();
+void Sort();
 struct voiture* voit;
 struct voiture* CreateVoiture(){
 	struct voiture *v = malloc(sizeof(struct voiture));
@@ -40,9 +44,9 @@ int main(){
 			pid_t processus = getpid();
 			 voit = CreateVoiture();
 			attacheVoitureAuRondPoint(voit);
-			signal(SIGUSR1,&entreRondPoint);
+			signal(SIGUSR1,&EntreRondPoint);
 			signal(SIGUSR2,&Avance);
-			signal(SIGUSR3,&Sort);
+			signal(SIGHUP,&Sort);
 
 			pause();
 			return 0;
@@ -53,14 +57,13 @@ int main(){
 	}
 	return 0;
 }
-void entreRondPoint()
+void EntreRondPoint()
 {
 	printf("Entre dans le rond point");
 	return 0;
 }
 void Avance()
 {
-	
 	printf("Avance dans le rond point en position "+voit->currentPos);
 	return 0;
 }
