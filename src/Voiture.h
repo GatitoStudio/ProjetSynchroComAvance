@@ -8,6 +8,7 @@ struct voiture{
   pid_t PID;
   enum direction depart;
   enum direction arrive;
+  int currentPos=0;
 };
 
 struct msgtxt {
