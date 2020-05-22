@@ -20,14 +20,23 @@ void avanceVoiture(struct rondPoint* croisement){
   croisement->surRondPoint[1] = croisement->surRondPoint[2];
   croisement->surRondPoint[2] = croisement->surRondPoint[3];
   croisement->surRondPoint[3] = voitureN;
+  for(int i = 0 ; i <4 ;++i){
+	if(croisement->surRondPoint[i]!=NULL){
+		croisement->surRondPoint[i]->currentPos=(direction)i;
+		kill( croisement->surRondPoint[i]->PID,SIGUSR2); 
+	}	
+   }
 }
 
 void suppressionVoiture(struct rondPoint* croisement,int indice){
+   kill( croisement->surRondPoint[indice]->PID,SIGUSR3);
   croisement->surRondPoint[indice] = NULL;
 }
 
 void insertionVoiture(struct rondPoint* croisement,int indice,int voiture){
   croisement->surRondPoint[indice]-> = voiture;
+   kill( croisement->surRondPoint[indice]->PID,SIGUSR3);
+
 }
 
 int DeplaceVoiture(struct rondPoint* croisement){
