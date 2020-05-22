@@ -17,9 +17,13 @@ struct rondPoint{
 void avanceVoiture(struct rondPoint* croisement){
   struct voiture* voitureN = croisement->surRondPoint[0];
   croisement->surRondPoint[0] = croisement->surRondPoint[1];
+if(croisement->surRondPoint[0]!=NULL){croisement->surRondPoint[0]->currentPos=direction.Nord;kill(croisement->surRondPoint[0]->PID,SIGUSR2); }		
   croisement->surRondPoint[1] = croisement->surRondPoint[2];
+if(croisement->surRondPoint[1]!=NULL){croisement->surRondPoint[1]->currentPos=direction.Ouest;kill( croisement->surRondPoint[1]->PID,SIGUSR2); }	
   croisement->surRondPoint[2] = croisement->surRondPoint[3];
+if(croisement->surRondPoint[2]!=NULL){croisement->surRondPoint[2]->currentPos=direction.Sud;kill( croisement->surRondPoint[2]->PID,SIGUSR2); }	
   croisement->surRondPoint[3] = voitureN;
+if(croisement->surRondPoint[3]!=NULL){croisement->surRondPoint[3]->currentPos=direction.Est;kill( croisement->surRondPoint[3]->PID,SIGUSR2); }	
 }
 
 void suppressionVoiture(struct rondPoint* croisement,int indice){
