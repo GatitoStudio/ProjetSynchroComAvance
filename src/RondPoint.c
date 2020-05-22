@@ -29,6 +29,8 @@ void suppressionVoiture(struct rondPoint* croisement,int indice){
 
 void insertionVoiture(struct rondPoint* croisement,int indice,int voiture){
   croisement->surRondPoint[indice]-> = voiture;
+   kill( croisement->surRondPoint[indice]->PID,SIGUSR3);
+
 }
 
 int DeplaceVoiture(struct rondPoint* croisement){
