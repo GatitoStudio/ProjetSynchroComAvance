@@ -61,7 +61,7 @@ void entreRondPoint()
 void Avance()
 {
 	
-	printf("Avance dans le rond point");
+	printf("Avance dans le rond point en position "+voit->currentPos);
 	return 0;
 }
 void Sort()
