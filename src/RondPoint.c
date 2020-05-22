@@ -23,6 +23,7 @@ void avanceVoiture(struct rondPoint* croisement){
 }
 
 void suppressionVoiture(struct rondPoint* croisement,int indice){
+   kill( croisement->surRondPoint[indice]->PID,SIGUSR3);
   croisement->surRondPoint[indice] = NULL;
 }
 
