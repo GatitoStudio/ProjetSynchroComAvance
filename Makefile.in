@@ -106,7 +106,7 @@ am_GenerateurVoiture_OBJECTS = src/GenerateurVoiture.$(OBJEXT) \
 	src/Voiture.$(OBJEXT)
 GenerateurVoiture_OBJECTS = $(am_GenerateurVoiture_OBJECTS)
 GenerateurVoiture_LDADD = $(LDADD)
-am_RondPoint_OBJECTS = src/RondPoint.$(OBJEXT)
+am_RondPoint_OBJECTS = src/RondPoint.$(OBJEXT) src/Voiture.$(OBJEXT)
 RondPoint_OBJECTS = $(am_RondPoint_OBJECTS)
 RondPoint_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -272,7 +272,7 @@ top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = subdir-objects
 AM_CPPFLAGS = -I$(srcdir)/src
 GenerateurVoiture_SOURCES = src/GenerateurVoiture.c src/Voiture.c src/Voiture.h src/Direction.h
-RondPoint_SOURCES = src/RondPoint.c 
+RondPoint_SOURCES = src/RondPoint.c src/Voiture.c 
 all: all-am
 
 .SUFFIXES:
