@@ -13,7 +13,7 @@ char* toJSON(struct voiture* voit){
 
 struct voiture* fromJSON(char* json){
 	struct voiture* voit = (struct voiture*)malloc(sizeof(struct voiture));
-	sscanf("{\"PID\":\"%d\",\"depart\":\"%d\",\"arrive\":\"%d\"}",
+	sscanf(json,"{\"PID\":\"%d\",\"depart\":\"%d\",\"arrive\":\"%d\"}",
                &voit->PID,
                &voit->depart,
                &voit->arrive);

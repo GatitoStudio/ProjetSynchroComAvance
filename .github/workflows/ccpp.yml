@@ -2,9 +2,13 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+    - master
+    - dev
   pull_request:
-    branches: [ master ]
+    branches: 
+    - master
+    - dev
 
 jobs:
   build:
@@ -13,6 +17,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: aclocal
+      run: aclocal
+    - name: autoconf
+      run: autoconf  
+    - name: automake
+      run: automake --add-missing
     - name: configure
       run: ./configure
     - name: make
