@@ -23,7 +23,6 @@ bool IsArrived(struct rondPoint* croisement,int i,enum direction dir)
 {
         if(croisement->surRondPoint[i] != NULL){
         	if(croisement->surRondPoint[i]->arrive  ==  dir){
-                	printf("Voiture %d arrive direction %d\n",croisement->surRondPoint[i]->PID);
                 	return true;
        		}
         	else{
@@ -34,6 +33,7 @@ bool IsArrived(struct rondPoint* croisement,int i,enum direction dir)
 }
 
 void avanceVoiture(struct rondPoint* croisement){
+  printf("Deplacement des voitures");
   struct voiture* voitureN = croisement->surRondPoint[0];
   croisement->surRondPoint[0] = croisement->surRondPoint[1];
   croisement->surRondPoint[1] = croisement->surRondPoint[2];
@@ -55,29 +55,24 @@ void suppressionVoiture(struct rondPoint* croisement,int indice){
 
 void insertionVoiture(struct rondPoint* croisement,int indice,struct voiture* voiture){
   croisement->surRondPoint[indice] = voiture;
-  printf("pid envoie : %d\n",croisement->surRondPoint[indice]->PID);
+  printf("insertion voiture pid : %d, depart : %d\n",
+    croisement->surRondPoint[indice]->PID,
+    croisement->surRondPoint[indice]->depart);
   kill( croisement->surRondPoint[indice]->PID,SIGUSR1);
 }
 
 void DeplaceVoiture(struct rondPoint* croisement){
   avanceVoiture(croisement);
-  printf("avanceVoiture\n");
   if(IsArrived(croisement,0,Nord))  suppressionVoiture(croisement,0);
   if(IsArrived(croisement,1,Ouest)) suppressionVoiture(croisement,1);
   if(IsArrived(croisement,2,Sud ))  suppressionVoiture(croisement,2);
   if(IsArrived(croisement,3,Est ))  suppressionVoiture(croisement,3);
-  printf("IsArrived\n");
   //test si les voitures sont arrivees sur leur case d'arrivees
   for(int i = 0; i < 4; i++){
   	if(croisement->surRondPoint[i] == NULL){
 		if((msgrcv(croisement->msgid[i],&croisement->message, sizeof(croisement->message),0,IPC_NOWAIT)) != -1){
 			struct voiture* voit = fromJSON(croisement->message.mtext);
-			printf("message : %s",croisement->message.mtext);
 			insertionVoiture(croisement, i, voit);
-			printf("pid : %d, depart: %d, arrive: %d\n",
-				croisement->surRondPoint[i]->PID,
-				croisement->surRondPoint[i]->depart,
-				croisement->surRondPoint[i]->arrive);
 		}
   	}
   }
@@ -94,16 +89,19 @@ int creationFileMessage(key_t cle){
 
 int main()
 {
-  struct rondPoint* croisement = malloc(sizeof(struct rondPoint));
+  struct rondPoint croisement;
+  int i;
+  for( i=0 ; i < 4; i++)
+       croisement.surRondPoint[i] = NULL;
   //On construit 4 files de messages pour contenir les informations des voitures en fonction de leur direction d'arrivee
   key_t cleNord = 50, cleOuest = 51, cleSud = 52, cleEst = 53;
-  croisement->msgid[0] = creationFileMessage(cleNord);
-  croisement->msgid[1] = creationFileMessage(cleOuest);
-  croisement->msgid[2] = creationFileMessage(cleSud);
-  croisement->msgid[3] = creationFileMessage(cleEst);
+  croisement.msgid[0] = creationFileMessage(cleNord);
+  croisement.msgid[1] = creationFileMessage(cleOuest);
+  croisement.msgid[2] = creationFileMessage(cleSud);
+  croisement.msgid[3] = creationFileMessage(cleEst);
   //Boucle principale
   while(1){
-    DeplaceVoiture(croisement);
+    DeplaceVoiture(&croisement);
     sleep(1);
   }
   return 0;

@@ -17,10 +17,17 @@ void Sort();
 struct voiture* voit;
 bool enVie = true;
 struct voiture* CreateVoiture(){
+        static unsigned int seed = 0;
 	struct voiture *v = malloc(sizeof(struct voiture));
+        int random;
 	v->PID = getpid();
-	v->depart = rand()%4;
-	v->arrive = rand()%4;
+        random = rand_r(&seed);
+	v->depart = random%4;
+	printf("random %d depart %d\n",random,v->depart);
+        random = rand_r(&seed);
+	v->arrive = random%4;
+        printf("random %d arrive %d\n",random,v->arrive);
+	v->arrive = random%4;
 	return v;
 }
 
@@ -42,13 +49,14 @@ void attacheVoitureAuRondPoint(struct voiture* voit){
 }
 
 int main(){
-	srand (time(0));
+	srand (time(NULL));
 	while(1){
+		voit = CreateVoiture();
 		pid_t currentPid = fork();
 		if(currentPid == 0){
 			pid_t processus = getpid();
 			printf("Creation de la voiture %d\n",processus);
-			voit = CreateVoiture();
+			voit->PID = processus;
 			attacheVoitureAuRondPoint(voit);
 			signal(SIGUSR1,&EntreRondPoint);
 			signal(SIGUSR2,&Avance);
