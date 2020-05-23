@@ -21,10 +21,10 @@ jobs:
       run: aclocal
     - name: autoconf
       run: autoconf  
-    - name: configure
-      run: ./configure
     - name: automake
       run: automake --add-missing
+    - name: configure
+      run: ./configure
     - name: make
       run: make
     - name: make check
