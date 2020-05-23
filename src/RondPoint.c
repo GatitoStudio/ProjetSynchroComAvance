@@ -58,16 +58,19 @@ void insertionVoiture(struct rondPoint* croisement,int indice,int voiture){
 
 void DeplaceVoiture(struct rondPoint* croisement){
   avanceVoiture(croisement);
+  printf("avanceVoiture\n");
   if(IsArrived(croisement,0,Nord))  suppressionVoiture(croisement,0);
   if(IsArrived(croisement,1,Ouest)) suppressionVoiture(croisement,1);
   if(IsArrived(croisement,2,Sud ))  suppressionVoiture(croisement,2);
-  if(IsArrived(croisement,3,Est )) suppressionVoiture(croisement,3);
-  //test si les voitures sont arrivées sur leur case d'arrivée
+  if(IsArrived(croisement,3,Est ))  suppressionVoiture(croisement,3);
+  printf("IsArrived\n");
+  //test si les voitures sont arrivees sur leur case d'arrivees
   for(int i = 0; i < 4; i++){
   	if(croisement->surRondPoint[i] == NULL){
 		if((msgrcv(croisement->msgid[i],&croisement->message, sizeof(croisement->message),0,IPC_NOWAIT)) != -1){
 			struct voiture* voit = fromJSON(croisement->message.mtext);
 			insertionVoiture(croisement, i, voit);
+			printf("insertionVoiture porition : %d\n",i);
 		}
   	}
   }
@@ -75,13 +78,11 @@ void DeplaceVoiture(struct rondPoint* croisement){
 
 void creationFileMessage(key_t cle,int msgid){
   if((msgid = msgget(cle, IPC_CREAT | S_IRUSR | S_IWUSR )) == -1){
-        fprintf(stderr, "Creation de la file de message %d impossible",cle);
+        fprintf(stderr, "Creation de la file de message %d impossible\n",cle);
         exit(1);
   }
 }
 
-     
-     
 int main()
 {
   struct rondPoint* croisement = malloc(sizeof(struct rondPoint));
@@ -94,6 +95,7 @@ int main()
   //Boucle principale
   while(1){
     DeplaceVoiture(croisement);
+    printf("Sleep\n");
     sleep(1);
   }
   return 0;
